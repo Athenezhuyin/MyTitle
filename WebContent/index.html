@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap-theme.css">
+<link rel="stylesheet" href="jcolor/jquery.minicolors.css">
+
+<script type="text/javascript" src="bootstrap-3.3.5-dist/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.5-dist/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.5-dist/js/npm.js"></script>
+<script type="text/javascript" src="jcolor/jquery.minicolors.js"></script>
+<style>
+	body{
+            background-color: #000;
+        }
+        
+	.container{
+		width:1333px;
+		height:900px;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	
+	form{
+		width:500px;
+		heigth:300px;
+		margin:0 auto;
+		position:absolute;
+		top:20%;
+		left:30%;
+	}
+	
+	label{
+		font-size:20px;
+		color:white;
+	}
+	
+	#infoBtn{
+		width:100px;
+		float:left;
+		margin-left:80px;
+	}
+	
+	#successBtn{
+		width:100px;
+		float:right;
+		margin-right:80px;
+	}
+</style>
+
+<script>
+
+	$(document).ready( function() {
+           $('.demo').each( function() {
+			$(this).minicolors({
+				control: $(this).attr('data-control') || 'hue',
+				defaultValue: $(this).attr('data-defaultValue') || '',
+				inline: $(this).attr('data-inline') === 'true',
+				letterCase: $(this).attr('data-letterCase') || 'lowercase',
+				opacity: $(this).attr('data-opacity'),
+				position: $(this).attr('data-position') || 'bottom left',
+				change: function(hex, opacity) {
+					if( !hex ) return;
+					if( opacity ) hex += ', ' + opacity;
+					try {
+						console.log(hex);
+					} catch(e) {}
+				},
+				theme: 'bootstrap'
+			});
+               
+           });
+		
+	});
+	/* $("#form").form('submit', {
+	url : "titleAction_add.action",
+	onSubmit : function() {
+		alert("ok");
+		return true;
+	},
+	type : "POST", // 设置请求类型为"POST"，默认为"GET"
+	success : function() {					
+			alert("添加成功！");
+			clr();
+	}
+}); */
+	
+	/* $("#successBtn").click(function(){
+		alert("o");
+		 $("#form").ajaxSubmit({
+		      type: "get",
+		      url: "titleAction_add.action",
+		       beforeSend: function(XMLHttpRequest){
+		    	  alert("ok");
+		      }, 
+		      cache: false,
+		      dataType: "json",
+		      success: function(data, textStatus){
+		           alert("成功");
+		      },
+		});  
+		
+	}); */
+	
+	/* function clr(){
+		$('#form').form('clear');	
+	} */
+	
+	function submit(){
+		alert("o");
+		 $("#form").ajaxSubmit({
+		      type: "get",
+		      url: "titleAction_add.action",
+		       beforeSend: function(XMLHttpRequest){
+		    	  alert("ok");
+		      }, 
+		      cache: false,
+		      dataType: "json",
+		      success: function(data, textStatus){
+		           alert("成功");
+		      },
+		});  
+	}
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="particles-js">
+        	<canvas style="width:1333px; height:800px;"></canvas>
+        </div>
+  
+		<form id="form" action="titleAction_add.action" enctype="multipart/form-data">
+		<!-- <form id="form"  enctype="multipart/form-data"> -->
+		
+			<ul>
+				<li>
+					<div class="form-group">
+				    	<label for="file" >File input</label>
+				    	<input type="file" name="title.file" id="file" class="form-control">
+			 		</div>
+		 		</li>
+		 		<li>
+			 		<div class="form-group">
+					    <label for="InputName">Name</label>
+					    <input type="text" name="title.name" class="form-control" id="InputName" placeholder="Jane Doe">
+					</div>
+				</li>
+				<li>
+					<div class="form-group">
+						<label for="hue">Color</label>
+						<input type="text" name="title.color" id="hue" class="form-control demo" data-control="hue" value="#ff6161">
+					</div>
+				</li>
+				<li>
+					<div class="form-group">
+						<br/>
+						<button type="button"  class="btn btn-info" id="infoBtn" disabled="disabled">添加</button>
+						<button type="button" onclick="javascript:submit()"  class="btn btn-success" id="successBtn">完成</button>
+					</div>
+				</li>
+			</ul>
+		</form>
+
+<script src="jquery-particles/js/particles.js"></script>
+<script src="jquery-particles/js/app.js"></script></body>
+</html>
